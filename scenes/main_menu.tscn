@@ -1,0 +1,215 @@
+[gd_scene load_steps=4 format=3 uid="uid://bkyqxc0j7c1hx"]
+
+[ext_resource type="Script" uid="uid://dlfqaca2vye1r" path="res://scripts/main_menu.gd" id="1_l6cm7"]
+[ext_resource type="Script" uid="uid://7ykv6xv4inoh" path="res://scripts/lobby_screen.gd" id="2_ekxnf"]
+[ext_resource type="Script" uid="uid://bg06nihqvwcbl" path="res://scripts/multiplayer/web_rtc_peer.gd" id="3_bqqt6"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_l6cm7")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0562916, 0.0562916, 0.0562916, 1)
+
+[node name="MainScreen" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Heading" type="Label" parent="MainScreen"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -100.0
+offset_right = 100.0
+offset_bottom = 100.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 32
+text = "WebRTC Lobby Demo"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="VBoxContainer1" type="VBoxContainer" parent="MainScreen"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -30.0
+offset_right = 30.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="HostJoinButton" type="OptionButton" parent="MainScreen/VBoxContainer1"]
+layout_mode = 2
+selected = 0
+item_count = 2
+popup/item_0/text = "Host"
+popup/item_0/id = 0
+popup/item_1/text = "Join"
+popup/item_1/id = 1
+
+[node name="VBoxContainer1" type="VBoxContainer" parent="MainScreen/VBoxContainer1"]
+layout_mode = 2
+
+[node name="JoinForm" type="VBoxContainer" parent="MainScreen/VBoxContainer1/VBoxContainer1"]
+visible = false
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MainScreen/VBoxContainer1/VBoxContainer1/JoinForm"]
+layout_mode = 2
+text = "Lobby code"
+
+[node name="LobbyCode" type="LineEdit" parent="MainScreen/VBoxContainer1/VBoxContainer1/JoinForm"]
+layout_mode = 2
+placeholder_text = "Ex. ABCD1234"
+max_length = 8
+
+[node name="LobbyCodeError" type="Label" parent="MainScreen/VBoxContainer1/VBoxContainer1/JoinForm"]
+visible = false
+layout_mode = 2
+theme_override_colors/font_color = Color(0.936619, 0.291993, 0.363663, 1)
+
+[node name="VBoxContainer1" type="VBoxContainer" parent="MainScreen/VBoxContainer1/VBoxContainer1"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MainScreen/VBoxContainer1/VBoxContainer1/VBoxContainer1"]
+layout_mode = 2
+text = "Player Name"
+
+[node name="PlayerName" type="LineEdit" parent="MainScreen/VBoxContainer1/VBoxContainer1/VBoxContainer1"]
+layout_mode = 2
+max_length = 32
+
+[node name="PlayerNameError" type="Label" parent="MainScreen/VBoxContainer1/VBoxContainer1/VBoxContainer1"]
+visible = false
+layout_mode = 2
+theme_override_colors/font_color = Color(0.937255, 0.290196, 0.364706, 1)
+
+[node name="Connect" type="Button" parent="MainScreen/VBoxContainer1"]
+layout_mode = 2
+text = "Connect"
+
+[node name="LobbyMessage" type="Label" parent="MainScreen"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -100.0
+offset_top = -23.0
+offset_right = 100.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.937255, 0.290196, 0.364706, 1)
+horizontal_alignment = 1
+
+[node name="LobbyScreen" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_ekxnf")
+
+[node name="Client" type="Node" parent="LobbyScreen"]
+script = ExtResource("3_bqqt6")
+
+[node name="LobbyTimer" type="Timer" parent="LobbyScreen"]
+wait_time = 3.0
+one_shot = true
+
+[node name="Loading" type="Label" parent="LobbyScreen"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -37.5
+offset_top = -11.5
+offset_right = 37.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Loading..."
+horizontal_alignment = 1
+
+[node name="Lobby" type="Control" parent="LobbyScreen"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer1" type="VBoxContainer" parent="LobbyScreen/Lobby"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -85.0
+offset_right = 85.0
+offset_bottom = 72.0
+grow_horizontal = 2
+alignment = 2
+
+[node name="Heading" type="Label" parent="LobbyScreen/Lobby/VBoxContainer1"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Lobby"
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="LobbyCode" type="Label" parent="LobbyScreen/Lobby/VBoxContainer1"]
+layout_mode = 2
+text = "Lobby code: "
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="LobbyScreen/Lobby"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -100.0
+offset_top = -67.0
+offset_right = 100.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_bottom = 32
+
+[node name="Disconnect" type="Button" parent="LobbyScreen/Lobby/MarginContainer"]
+layout_mode = 2
+text = "Disconnect"
+flat = true
+
+[node name="Players" type="Node2D" parent="LobbyScreen/Lobby"]
