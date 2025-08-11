@@ -63,6 +63,9 @@ func _handle_join_lobby_success(id: int, code: String) -> void:
 	
 	lobby_timer.stop()
 	lobby_code_label.text = "Lobby code: %s" % code
+	
+	if multiplayer.get_unique_id() == 1:
+		_create_player()
 
 func _handle_lobby_timeout() -> void:
 	_go_back("Timeout during join")
@@ -95,10 +98,7 @@ func start(code: String, player_name: String) -> void:
 	
 	player_info.player_name = player_name
 	
-	if code == "":
-		_create_player()
-	
-	client.start("ws://127.0.0.1:8080", code)
+	client.start("wss://webrtc-punch-demo-server-spring-sun-3930.fly.dev:8080", code)
 	lobby_timer.start()
 
 @rpc("any_peer", "reliable")
@@ -113,7 +113,6 @@ func _register_player(other_player_info: Dictionary):
 	peer_player.player_id = other_id
 	
 	peer_nodes[other_id] = peer_player
-
 
 @rpc("any_peer")
 func peer_update(data: PackedByteArray):
