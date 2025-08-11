@@ -213,3 +213,4 @@ text = "Disconnect"
 flat = true
 
 [node name="Players" type="Node2D" parent="LobbyScreen/Lobby"]
+y_sort_enabled = true
