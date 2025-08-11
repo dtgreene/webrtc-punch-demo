@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://bkyqxc0j7c1hx"]
+[gd_scene load_steps=5 format=3 uid="uid://bkyqxc0j7c1hx"]
 
 [ext_resource type="Script" uid="uid://dlfqaca2vye1r" path="res://scripts/main_menu.gd" id="1_l6cm7"]
 [ext_resource type="Script" uid="uid://7ykv6xv4inoh" path="res://scripts/lobby_screen.gd" id="2_ekxnf"]
 [ext_resource type="Script" uid="uid://bg06nihqvwcbl" path="res://scripts/multiplayer/web_rtc_peer.gd" id="3_bqqt6"]
+[ext_resource type="Texture2D" uid="uid://dgoebv4byjwu1" path="res://images/copy.png" id="4_wu84c"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -186,11 +187,21 @@ text = "Lobby"
 horizontal_alignment = 1
 vertical_alignment = 2
 
-[node name="LobbyCode" type="Label" parent="LobbyScreen/Lobby/VBoxContainer1"]
+[node name="HBoxContainer1" type="HBoxContainer" parent="LobbyScreen/Lobby/VBoxContainer1"]
+layout_mode = 2
+alignment = 1
+
+[node name="LobbyCode" type="Label" parent="LobbyScreen/Lobby/VBoxContainer1/HBoxContainer1"]
 layout_mode = 2
 text = "Lobby code: "
 horizontal_alignment = 1
 vertical_alignment = 2
+
+[node name="CopyButton" type="Button" parent="LobbyScreen/Lobby/VBoxContainer1/HBoxContainer1"]
+layout_mode = 2
+icon = ExtResource("4_wu84c")
+flat = true
+icon_alignment = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="LobbyScreen/Lobby"]
 custom_minimum_size = Vector2(200, 0)
