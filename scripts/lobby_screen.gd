@@ -108,7 +108,7 @@ func start(code: String, player_name: String) -> void:
 	
 	player_info.player_name = player_name
 	
-	client.start("wss://webrtc-punch-demo-server.fly.dev/", code)
+	client.start("wss://godot-webrtc-signaling-server.fly.dev/", code)
 	lobby_timer.start()
 
 @rpc("any_peer", "reliable")
